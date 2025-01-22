@@ -1,0 +1,52 @@
+services:
+  # Service  backend (Laravel)
+  backend:
+    image: php:7.4-fpm
+    container_name: laravel_backend
+    working_dir: /var/www
+    volumes:
+      - ./backendPHP:/var/www
+      - ./backendPHP/php.ini:/usr/local/etc/php/php.ini
+    networks:
+      - app-network
+    depends_on:
+      - db
+    ports:
+      - 8000:80  
+
+  # Service frontend (Vue.js)
+  frontend:
+    image: node:18
+    container_name: vue_frontend
+    working_dir: /app
+    volumes:
+      - /app/node_modules
+      - ./frontendVue:/app
+    links:
+      - backend
+    networks:
+      - app-network
+    ports:
+      - 80:8080
+    command: sh -c "npm install && npm run dev"
+
+  # Service database
+  db:
+    image: mysql:5.7
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - app-network
+    ports:
+      - 3306:3306
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+     
+
+networks:
+  app-network:
+    driver: bridge
