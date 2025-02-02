@@ -2,8 +2,19 @@
   <v-app id="inspire">
     <v-app-bar flat>
       <v-container class="mx-auto d-flex align-center justify-center">
-        <label>Talking IA</label>
+        <v-avatar class="me-4" color="grey-darken-1" size="32"></v-avatar>
 
+        <v-responsive max-width="160">
+          <v-text-field
+            density="compact"
+            label="Search"
+            rounded="lg"
+            variant="solo-filled"
+            flat
+            hide-details
+            single-line
+          ></v-text-field>
+        </v-responsive>
       </v-container>
     </v-app-bar>
 
@@ -33,27 +44,27 @@
             </v-sheet>
           </v-col>
           <v-footer color="primary" app inset>
-              <v-container>
-                <v-row align="center" justify="center">
-                  <v-col cols="12" md="6">
-                    <v-form @submit.prevent="sendMessage">
-                      <v-textarea
-                        v-model="inputText"
-                        label="Digite sua mensagem..."
-                        outlined
-                        auto-grow
-                        rows="1"
-                        hide-details
-                        class="input-field"
-                      ></v-textarea>
-                      <v-btn type="submit" color="white" class="mt-2" block>
-                        Enviar
-                      </v-btn>
-                    </v-form>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-footer>
+            <v-container>
+              <v-row align="center">
+                <v-col cols="12">
+                  <v-form @submit.prevent="sendMessage">
+                    <v-textarea
+                      v-model="inputText"
+                      label="Digite sua mensagem..."
+                      outlined
+                      auto-grow
+                      rows="1"
+                      hide-details
+                      class="input-field"
+                    ></v-textarea>
+                    <v-btn type="submit" color="white" class="mt-2" block>
+                      Enviar
+                    </v-btn>
+                  </v-form>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-footer>
         </v-row>
       </v-container>
     </v-main>

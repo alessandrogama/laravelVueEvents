@@ -1,23 +1,52 @@
 {
-  "name": "frontendvue",
-  "version": "0.0.0",
+  "name": "fron",
+  "version": "0.1.0",
   "private": true,
-  "type": "module",
   "scripts": {
-    "dev": "vite",
+    "serve": "vite preview",
     "build": "vite build",
-    "preview": "vite preview",
-    "lint": "eslint . --fix"
+    "lint": "vue-cli-service lint",
+    "dev": "vite"
   },
   "dependencies": {
-    "vue": "^3.5.13"
+    "@mdi/font": "5.9.55",
+    "core-js": "^3.8.3",
+    "roboto-fontface": "*",
+    "vite-plugin-vuetify": "^2.0.4",
+    "vue": "^3.2.13",
+    "vuetify": "^3.7.9",
+    "webfontloader": "^1.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.14.0",
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
     "@vitejs/plugin-vue": "^5.2.1",
-    "eslint": "^9.14.0",
-    "eslint-plugin-vue": "^9.30.0",
-    "vite": "^6.0.5",
-    "vite-plugin-vue-devtools": "^7.6.8"
-  }
+    "@vue/cli-plugin-babel": "^3.12.1",
+    "@vue/cli-plugin-eslint": "^5.0.8",
+    "@vue/cli-service": "^3.3.1",
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "vite": "^6.0.11",
+    "vue-cli-plugin-vuetify": "~2.5.8"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "@babel/eslint-parser"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
 }

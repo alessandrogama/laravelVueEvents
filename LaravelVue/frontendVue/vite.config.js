@@ -2,13 +2,18 @@ import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import vueDevTools from 'vite-plugin-vue-devtools'
+import vuetify from 'vite-plugin-vuetify'
 
-// https://vite.dev/config/
+const path = require('path')
+
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
-    vueDevTools(),
+    // https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vite-plugin
+    vuetify({
+      autoImport: true,
+    }),
   ],
   resolve: {
     alias: {
@@ -19,4 +24,17 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 8080
   },
+  /* remove the need to specify .vue files https://vitejs.dev/config/#resolve-extensions
+  resolve: {
+    extensions: [
+      '.js',
+      '.json',
+      '.jsx',
+      '.mjs',
+      '.ts',
+      '.tsx',
+      '.vue',
+    ]
+  },
+  */
 })
