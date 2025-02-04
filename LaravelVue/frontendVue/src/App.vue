@@ -65,6 +65,8 @@
 </script>
 
 <script>
+import axios from "axios";
+
   export default {
     data() {
       return {
@@ -77,17 +79,25 @@
     methods: {
       sendMessage() {
         if (this.inputText.trim()) {
-          // Adiciona a mensagem do usuário
-          this.messages.push({ text: this.inputText, sender: 'user' })
-
-          // Simula uma resposta do bot
+          axios.post(this.$ApiAddress + '/api/talkingIA', {
+            pergunta: this.inputText,
+        })
+        .then(response => {
+            // Adiciona a mensagem do usuário
+            this.messages.push({ text: this.inputText, sender: 'user' })
+            console.log('Resposta do backend:', response.data);
+            console.log('Melhor resposta:', response.data.melhor_resposta);
+         // Resposta
           setTimeout(() => {
             this.messages.push({
-              text: 'Esta é uma resposta simulada da IA.',
+              text: response.data.melhor_resposta,
               sender: 'bot',
             })
           }, 1000)
-
+        })
+        .catch(error => {
+            console.error('Erro ao enviar a pergunta:', error);
+        });
           // Limpa o campo de entrada
           this.inputText = ''
         }
