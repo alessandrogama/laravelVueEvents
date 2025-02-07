@@ -79,14 +79,14 @@ import axios from "axios";
     methods: {
       sendMessage() {
         if (this.inputText.trim()) {
-          axios.post(this.$ApiAddress + '/api/talkingIA', {
+          axios.post(this.$ApiAddress + '/api/perguntar', {
             pergunta: this.inputText,
         })
         .then(response => {
             // Adiciona a mensagem do usuário
             this.messages.push({ text: this.inputText, sender: 'user' })
-            console.log('Resposta do backend:', response.data);
-            console.log('Melhor resposta:', response.data.melhor_resposta);
+            console.log('Resposta do backend:', response.data),
+            console.log('Melhor resposta:', response.data.melhor_resposta),
          // Resposta
           setTimeout(() => {
             this.messages.push({

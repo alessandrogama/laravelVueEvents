@@ -1,24 +1,23 @@
 services:
-  # Service  backend (Laravel)
   backend:
-    image: php:8.1-fpm
+    build: 
+      context: .
+      dockerfile: DockerFile
     container_name: laravel_backend
-    working_dir: /var/www
+    working_dir: /var/www/html
     volumes:
-      - ./backendPHP:/var/www
-      - ./backendPHP/php.ini:/usr/local/etc/php/php.ini
+      - ./backendPHP:/var/www/html
     networks:
       - app-network
     depends_on:
       - db
     ports:
-      - 8000:80  
+      - 8000:80
 
-  # Service frontend (Vue.js)
   frontend:
     build: 
       context: ./
-      dockerfile: web.dockerfile #dev
+      dockerfile: web.dockerfile
     restart: unless-stopped
     container_name: vue_frontend
     working_dir: /app
@@ -35,7 +34,6 @@ services:
       - 80:8080
     command: sh -c "npm install --legacy-peer-deps && npm run dev"
 
-  # Service database
   db:
     image: mysql:5.7
     container_name: mysql_db
@@ -45,12 +43,12 @@ services:
       - app-network
     ports:
       - 3306:3306
+
   adminer:
     image: adminer
     restart: always
     ports:
       - 8080:8080
-     
 
 networks:
   app-network:
